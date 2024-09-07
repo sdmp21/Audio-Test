@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unpausable Audio Test</title>
+</head>
+<body>
+    <h1>TOEFL Prep - Entry Audio</h1>
+    <audio id="testAudio" controls autoplay>
+        <source src="IKJ TOEFL Prep - Entry Audio.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        var audio = document.getElementById("testAudio");
+
+        // Disable pause
+        audio.addEventListener('pause', function() {
+            audio.play();
+        });
+
+        // Disable seek
+        audio.addEventListener('seeking', function(event) {
+            audio.currentTime = audio.startTime; // Prevent seeking
+        });
+
+        // Disable replay after the audio ends
+        audio.addEventListener('ended', function() {
+            audio.remove();
+        });
+
+        // Disable right-click to prevent downloading or inspecting
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+</html>
